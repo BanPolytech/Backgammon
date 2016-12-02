@@ -47,7 +47,22 @@ void display(int T[26][2])
 	
 	k=0;
 	printf(" ____________________________\n");
-	for (i=2;i<14;i++)
+	
+	printf("|");
+	for (j=1;j<6;j++)
+	{
+		printf(" '");
+	}
+	printf("  ");
+	printf("| |");
+	for (j=8;j<13;j++)
+	{
+		printf(" '");
+	}
+	printf("  ");
+	printf(" |\n");
+	
+	for (i=3;i<14;i++)
 	{
 		printf("|");
 		for (j=1;j<7;j++)
@@ -65,6 +80,21 @@ void display(int T[26][2])
 		}
 		printf(" | %d\n",k);
 	}
+	
+	printf("|");
+	for (j=1;j<6;j++)
+	{
+		printf(" ,");
+	}
+	printf("  ");
+	printf("| |");
+	for (j=8;j<13;j++)
+	{
+		printf(" ,");
+	}
+	printf("  ");
+	printf(" |\n");
+	
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
 }
 
