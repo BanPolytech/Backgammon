@@ -1,37 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
+#include "couleurs.h"
 
 
-
-char pion(int T[26][2],int k,int i) //Renvoie un char représentant un pion blanc
-{									//un pion noir, ou le vide		
-	if (i > T[k][0])
+char pion(int T[26],int k,int i) //Renvoie un char représentant un pion IA 0
+{									//un pion adversaire X, ou le vide		
+	if (i > fabs(T[k]))
 		return ' ';
-	else if (T[k][1]==0)
+	else if (T[k]>0)
 		return 'O';
 	else
 		return 'X';
 }
 
-void pion_mil(int T[26][2],int k)
+void pion_mil(int T[26],int k)
 {	
-	if (T[k][0] < 5)
+	if (fabs(T[k]) < 5)
 		printf("  ");
-	else if (T[k][0] > 10)
-	{
-		printf("1%c",T[k][0]%10+48);
-	}
-	else if (T[k][0] > 5 && T[k][0] < 10)
-		printf("%c ",T[k][0]+48);
-	else if (T[k][1]==0)
+	else if (fabs(T[k]) >= 10)
+		printf("1%c",T[k]%10+48);
+	else if (fabs(T[k]) > 5 )
+		printf("%c ",T[k]+48);
+	else if (T[k] > 0)
 		printf("O ");
 	else
 		printf("X ");
 }
 
 
-void display(int T[26][2])
+void display(int T[26])
 {
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
@@ -144,33 +143,25 @@ void display(int T[26][2])
 }
 
 
-void afficher(int T[26][2])
+void afficher(int T[26])
 {
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d %d    %d: %d %d\n",i,T[i][0],T[i][1],i+13,T[i+13][0],T[i+13][1]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
 	printf("\n");
 }
 
-void initialiser_plateau(int T[26][2])
+void initialiser_plateau(int T[26])
 {
-	T[1][0]=2;
-	T[1][1]=1;
-	T[6][0]=5;
-	T[6][1]=0;
-	T[8][0]=3;
-	T[8][1]=0;
-	T[12][0]=5;
-	T[12][1]=1;
-	T[13][0]=5;
-	T[13][1]=0;
-	T[17][0]=3;
-	T[17][1]=1;
-	T[19][0]=5;
-	T[19][1]=1;
-	T[24][0]=2;
-	T[24][1]=0;	
+	T[1]=-2;
+	T[6]=5;
+	T[8]=3;
+	T[12]=-5;
+	T[13]=5;
+	T[17]=-3;
+	T[19]=-5;
+	T[24]=2;
 }
 
 int lancer_de1(void)
@@ -193,37 +184,33 @@ int lancer_de2(void)
     return nombre_aleatoire;
 }
 
-int choix_pos(int T[26][2],int joueur)
+int choix_coup(int T[25],int joueur,int de1, int de2)
 {
-	int position;
+	int position,somme;
+
+	somme=de1+de2;
 	do
 	{
-		printf("Entrez la position du pion que vous voulez déplacer:");
+		printf("Entrez la position du premier pion que vous voulez déplacer:");
 		scanf("%d",&position);
 		printf("\n");
 	}
-	while (T[position][0] == 0 || T[position][1] != joueur);
+	while (T[position] <= 0);
 	printf("\n\n");
 	return position;
 }
 
-int choix_trajet(int T[26][2],int joueur)
-{
-	int position;
-	do
-	{
-		printf("Entrez la position du pion que vous voulez déplacer:");
-		scanf("%d",&position);
-		printf("\n");
-	}
-	while (T[position][0] == 0 || T[position][1] != joueur);
-	printf("\n\n");
-	return position;
-}
+void afficher
 
+/*-------------------------------------------------------------------------------*/
+/*                                     MAIN                                      */
+/*-------------------------------------------------------------------------------*/
+
+/*
+int T[25]={0};
 int main(void)
 {
-	int T[26][2]={{0},{0}};
+	int T[26]={{0},{0}};
 	int de1,de2,position,fin;
 	int *trajet;
 	
@@ -253,11 +240,15 @@ int main(void)
 	while (fin);	
 	return 0;
 }
+*/
 
-/*
+
+
+
+
 int main(void)
 {
-	int T[26][2]={{0},{0}};
+	int T[25]={0};
 	int de1,de2,position,fin;
 	int *trajet;
 	
@@ -265,6 +256,19 @@ int main(void)
 	initialiser_plateau(T);
 	printf("----------LA PARTIE COMMENCE---------\n\n");
 	display(T);	
+	return 0;
+}
+
+/*
+int main(void)
+{
+	printf("\033[H\033[2J");
+
+	couleur("34");
+	printf("test");
+	couleur("0");
+	printf("test\n");
+
 	return 0;
 }
 */
