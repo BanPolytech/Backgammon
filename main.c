@@ -1,6 +1,6 @@
 #include <stdio.h>
-
-
+#include <stdlib.h>
+#include "affichage.h"
 /*
 void display(int T[24][2])
 {
@@ -41,46 +41,21 @@ void display(int T[24][2])
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTT\n");
 }
 */
-void display(int T[26][2])
-{
-	int i,j,k;
-	
-	k=0;
-	printf(" ____________________________\n");
-	for (i=2;i<14;i++)
-	{
-		printf("|");
-		for (j=1;j<7;j++)
-		{	
-			printf("  ");
-			k++;
-		}
-		printf("|");
-		printf(" ");
-		printf("|"); 
-		for (j=8;j<14;j++)
-		{	
-			printf("  ");
-			k++;
-		}
-		printf(" | %d\n",k);
-	}
-	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\n");
+void initialisation() {
+
+	//il faut mettre les pions de bases
+
+	//il faut definir qui joue en premier
+
+
 }
 
-void afficher(int T[26][2])
-{
-	int i;
-	
-	for (i=0;i<26;i++)
-		printf("%d: %d %d\n",i,T[i][0],T[i][1]);
-	printf("\n");
-}
+
 int main(void)
 {
 	int T[26][2]={{0},{0}};
-	//T[0][0]=1; //Il y a 1 pion BLANC à la case 0
-	//T[0][1]=0;
+
+	initialisation();
 	afficher(T);
 	display(T);
 	return 0;
