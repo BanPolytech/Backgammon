@@ -32,9 +32,10 @@ void tour_joueur(int T[], int J) {
 	display_pions_possibles(T);
 
 	pos = choix_coup(T, J);
-	display_coups_possibles(T, pos);
+	tpc poss = possib_deplacement(T, de1, de2, pos)
+	display_coups_possibles(T, pos, poss);
 
-	tpc choix_deplacement(T, de1, de2, pos);
+	tpc choix_deplacement(T, poss, pos);
 
 
 
@@ -62,19 +63,48 @@ int choix_coup(int T[], int joueur)
 	return pos;
 }
 
-tpc choix_deplacement(int T[], int de1, int de2, tpc c, int pos) {
 
-	int i = 0;
+void choix_deplacement(int T[], int pos, tpc poss) {
+
+	int choix, i=0, g=0;
+
+	do {
+		i=0;
+		printf("Veuillez choisir le coup que vous voulez jouer parmi ceux possibles\nVeuillez indiquer le numéro de colonne :");
+		scanf("%d",&choix);
+
+		while(poss[i] && !g) {
+			if (choix == poss[i].depart + poss[i].deplacement) {
+				g=1;
+			}
+			i++;
+		}
+
+	}while(!g);
+
+	if(poss[i].joueur == IA || poss[i].joueur == U2) {
+		T[poss[i].depart] -= 1;
+		T[poss[i].depart + poss[i].deplacement] += 1;
+	} else if(poss[i].joueur == U1) {
+		T[poss[i].depart] += 1;
+		T[poss[i].depart + poss[i].deplacement] -= 1;
+	}	
+}
+
+tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos) {
+
+	int i=0, j=0;
 	coup poss[];
-
-	printf("Veuillez indiquer le coup que vous voulez jouer parmi ceux possibles\n");
 
 	while(c[i]) {
 		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2) || (c[i].depart == pos && c[i].deplacement == de1 + de2)) {
-
+			poss[j] = c[i];
+			j++;
 		}
 		i++;
 	}
+
+	return poss;
 
 }
 
