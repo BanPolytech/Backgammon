@@ -7,12 +7,19 @@
 #define U1 1
 #define U2 2
 
-void initialisation() {
+void initialisation(int T[]) {
 
 	//il faut mettre les pions de bases
 
 	//il faut definir qui joue en premier
-
+	T[1]=-2;
+	T[6]=5;
+	T[8]=3;
+	T[12]=-5;
+	T[13]=5;
+	T[17]=-3;
+	T[19]=-5;
+	T[24]=2;
 
 }
 

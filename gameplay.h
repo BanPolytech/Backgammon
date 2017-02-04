@@ -29,11 +29,11 @@ void tour_joueur(int T[], int J) {
 	de2 = lancer_de();
 
 	tpc coups = coups_possibles(T, J);
-	display_pions_possibles(T);
+	//display_pions_possibles(T);
 
 	pos = choix_coup(T, J);
 	tpc poss = possib_deplacement(T, de1, de2, pos)
-	display_coups_possibles(T, pos, poss);
+	//display_coups_possibles(T, pos, poss);
 
 	tpc choix_deplacement(T, poss, pos);
 
