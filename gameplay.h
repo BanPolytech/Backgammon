@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "affichage.h"
+//#include "affichage.h"
 
 #define TMAX 25
 #define IA 0
@@ -14,28 +14,31 @@ typedef struct coup {
 	int deplacement;
 }coup, *tpc;
 
-
-int lancer_de(void);
 void tour_joueur(int T[], int J);
+int lancer_de(void);
+int choix_coup(int T[], int joueur);
+void choix_deplacement(int T[], int pos, tpc poss, int taille);
+tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille);
 coup definir_coup(int joueur, int depart, int deplacement);
+tpc coups_possibles(int T[], int joueur, int *taille);
 
 
 void tour_joueur(int T[], int J) {
 
-	int pos, de1, de2;
+	int pos, de1, de2, tailleposs;
 
     srand(time(NULL)); // initialisation de rand
 	de1 = lancer_de();
 	de2 = lancer_de();
 
-	tpc coups = coups_possibles(T, J);
+	tpc coups = coups_possibles(T, J, &tailleposs);
 	//display_pions_possibles(T);
 
 	pos = choix_coup(T, J);
-	tpc poss = possib_deplacement(T, de1, de2, pos)
+	tpc poss = possib_deplacement(T, de1, de2, coups, pos, &tailleposs);
 	//display_coups_possibles(T, pos, poss);
 
-	tpc choix_deplacement(T, poss, pos);
+	choix_deplacement(T, pos, poss, tailleposs);
 
 
 
@@ -50,8 +53,7 @@ int lancer_de(void) {
 	return nombre_aleatoire = rand()%6+1;
 }
 
-int choix_coup(int T[], int joueur)
-{
+int choix_coup(int T[], int joueur) {
 	int pos;
 
 	do {
@@ -64,7 +66,7 @@ int choix_coup(int T[], int joueur)
 }
 
 
-void choix_deplacement(int T[], int pos, tpc poss) {
+void choix_deplacement(int T[], int pos, tpc poss, int taille) {
 
 	int choix, i=0, g=0;
 
@@ -73,11 +75,10 @@ void choix_deplacement(int T[], int pos, tpc poss) {
 		printf("Veuillez choisir le coup que vous voulez jouer parmi ceux possibles\nVeuillez indiquer le numéro de colonne :");
 		scanf("%d",&choix);
 
-		while(poss[i] && !g) {
+		for(i=0;i<taille;i++) {
 			if (choix == poss[i].depart + poss[i].deplacement) {
 				g=1;
 			}
-			i++;
 		}
 
 	}while(!g);
@@ -91,27 +92,26 @@ void choix_deplacement(int T[], int pos, tpc poss) {
 	}	
 }
 
-tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos) {
+tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille) {
 
 	int i=0, j=0;
-	coup poss[];
+	tpc poss;
 
-	while(c[i]) {
+	for(i=0;i<*taille;i++) {
 		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2) || (c[i].depart == pos && c[i].deplacement == de1 + de2)) {
 			poss[j] = c[i];
 			j++;
 		}
-		i++;
 	}
-
+	*taille = j;
 	return poss;
 
 }
 
 
-tpc coups_possibles(int T[], int joueur) {
+tpc coups_possibles(int T[], int joueur, int *taille) {
 
-	coup poss[];
+	tpc poss;
 	int k = 0;
 	int combinaisons[21][2] = {{1,1},{1,2},{1,3},{1,4},{1,5},{1,6},{2,2},{2,3},{2,4},{2,5},{2,6},{3,3},{3,4},{3,5},{3,6},{4,4},{4,5},{4,6},{5,5},{5,6},{6,6}};
 
@@ -134,15 +134,16 @@ tpc coups_possibles(int T[], int joueur) {
 				} else if(T[i + combinaisons[j][1]] <= 0) {
 					poss[k] = definir_coup(joueur, i, combinaisons[j][1]);
 					k++;
+				}
+			}
 		}
 	}
-
+	*taille = k;
 	return poss;
 }
 
 coup definir_coup(int joueur, int depart, int deplacement) {
 	coup c;
-	c = (*coup)malloc(sizeof(coup));
 	c.joueur = joueur;
 	c.depart = depart;
 	c.deplacement = deplacement;

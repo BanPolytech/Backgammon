@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "affichage.h"
+#include "interface.h"
 #include "gameplay.h"
 
 #define IA 0
@@ -22,13 +22,6 @@ void initialisation(int T[]) {
 	T[24]=2;
 
 }
-
-typedef struct coup {
-	int joueur;
-	int depart;
-	int deplacement;
-}coup;
-
 
 
 int main(void)
@@ -59,7 +52,7 @@ int main(void)
 		while(!win){
 
 			initialisation(T);
-			display(T);
+			//display(T);
 			tour_joueur(T, U1);
 			display(T);
 			tour_joueur(T, IA);
