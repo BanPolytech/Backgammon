@@ -27,10 +27,10 @@ void initialisation(int T[]) {
 int main(void)
 {
 	int T[25]={0};
-	int Cimetiere_IA;
-	int Cimetiere_U;
-	int Sortie_IA;
-	int Sortie_U;
+	int *Cimetiere_IA;
+	int *Cimetiere_U;
+	int *Sortie_IA;
+	int *Sortie_U;
 	int win = 0;
 	int c;
 
@@ -41,9 +41,9 @@ int main(void)
 		while(!win){
 
 			initialisation(T);
-			display(T);
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, U1);
-			display(T);
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, U2);
 
 			
@@ -54,7 +54,7 @@ int main(void)
 			initialisation(T);
 			//display(T);
 			tour_joueur(T, U1);
-			display(T);
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, IA);
 
 			
