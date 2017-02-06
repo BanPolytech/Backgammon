@@ -34,6 +34,7 @@ void pion_mil(int c)
 }
 
 
+
 void display(int T[25], int *Cimetiere_IA, int *Cimetiere_U, int *Sortie_IA, int *Sortie_U)
 {
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
