@@ -1,3 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "couleurs.h"
+
+#define U1 1
+#define U2 2
+#define IA 0
+
+
 
 char pion(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
@@ -580,18 +590,7 @@ void afficher(int T[26])
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
 	printf("\n");
 }
 
-void initialiser_pions_plateau(int T[25])
-{
-	T[1]=-2;
-	T[6]=5;
-	T[8]=3;
-	T[12]=-5;
-	T[13]=5;
-	T[17]=-3;
-	T[19]=-5;
-	T[24]=2;
-}
