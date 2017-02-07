@@ -585,12 +585,12 @@ void display_pions_possibles(int T[25], int joueur, int *Cimetiere_IA, int *Cime
 	printf("   11  9   7     6   4   2\n");
 }
 
-void afficher(int T[26])
+void afficher(int T[25])
 {
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
 	printf("\n");
 }
 
