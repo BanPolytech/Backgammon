@@ -1,7 +1,7 @@
+
 //#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 
 #ifndef COULEURS
 #define COULEURS
@@ -11,6 +11,7 @@
 
 
 #endif
+
 /*
 void color(int t,int f)
 {
@@ -18,3 +19,4 @@ void color(int t,int f)
             SetConsoleTextAttribute(H,f*16+t);
 }
 */
+
