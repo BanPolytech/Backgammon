@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
 #include "couleurs.h"
 
@@ -8,10 +9,9 @@
 #define IA 0
 
 
-
 char pion(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		return ' ';
 	else if (c>0)
 		return 'O';
@@ -21,18 +21,17 @@ char pion(int c,int i) //Renvoie un char représentant un pion IA 0
 
 void pion_mil(int c)
 {	
-	if (fabs(c) < 5)
+	if (abs(c) < 5)
 		printf("  ");
-	else if (fabs(c) >= 10)
+	else if (abs(c) >= 10)
 		printf("1%c",c%10+48);
-	else if (fabs(c) > 5 )
+	else if (abs(c) > 5 )
 		printf("%c ",c+48);
 	else if (c > 0)
 		printf("O ");
 	else
 		printf("X ");
 }
-
 
 
 void display(int T[25], int *Cimetiere_IA, int *Cimetiere_U, int *Sortie_IA, int *Sortie_U)
@@ -154,9 +153,9 @@ void display(int T[25], int *Cimetiere_IA, int *Cimetiere_U, int *Sortie_IA, int
 
 void possibles_pion_haut_J1(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf(" '");
-	else if (i == fabs(c) && c<0) //pion possible J1
+	else if (i == abs(c) && c<0) //pion possible J1
 	{
 		//Version Windows
 		//color(12,0);
@@ -165,7 +164,7 @@ void possibles_pion_haut_J1(int c,int i) //Renvoie un char représentant un pion
 		//Version portable
 		//printf("A'");
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X'");
 		couleur("0");
 	}
@@ -177,9 +176,9 @@ void possibles_pion_haut_J1(int c,int i) //Renvoie un char représentant un pion
 
 void possibles_pion_J1(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf("  ");
-	else if (i == fabs(c) && c<0) //pion possible J1
+	else if (i == abs(c) && c<0) //pion possible J1
 	{
 		//Version Windows
 		//color(12,0);
@@ -188,7 +187,7 @@ void possibles_pion_J1(int c,int i) //Renvoie un char représentant un pion IA 0
 		//Version portable
 		//printf("A ");
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X ");
 		couleur("0");
 	}
@@ -200,7 +199,7 @@ void possibles_pion_J1(int c,int i) //Renvoie un char représentant un pion IA 0
 
 void possibles_pion_mil_J1(int c)
 {	
-	if (fabs(c) < 5)
+	if (abs(c) < 5)
 		printf("  ");
 	else if (c == -5)  //pion possible J1
 	{
@@ -211,7 +210,7 @@ void possibles_pion_mil_J1(int c)
 		//Version portable
 		//printf("A ");
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X ");
 		couleur("0");
 	}
@@ -226,7 +225,7 @@ void possibles_pion_mil_J1(int c)
 		//Version portable
 		//printf("A%c",c%10+48);
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X ");
 		couleur("0");
 	}
@@ -241,7 +240,7 @@ void possibles_pion_mil_J1(int c)
 		//Version portable
 		//printf("%cA",c+48);
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X ");
 		couleur("0");
 	}
@@ -251,9 +250,9 @@ void possibles_pion_mil_J1(int c)
 
 void possibles_pion_bas_J1(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf(" ,");
-	else if (i == fabs(c) && c<0) //pion possible J1
+	else if (i == abs(c) && c<0) //pion possible J1
 	{
 		//Version Windows
 		//color(12,0);
@@ -262,7 +261,7 @@ void possibles_pion_bas_J1(int c,int i) //Renvoie un char représentant un pion 
 		//Version portable
 		//printf("A,");
 		//Version Linux
-		couleur("34");
+		couleur("31");
 		printf("X,");
 		couleur("0");
 	}
@@ -274,9 +273,9 @@ void possibles_pion_bas_J1(int c,int i) //Renvoie un char représentant un pion 
 
 void possibles_pion_haut_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf(" '");
-	else if (i == fabs(c) && c>0) //pion possible J2
+	else if (i == abs(c) && c>0) //pion possible J2
 	{
 		//Version Windows
 		//color(5,0);  
@@ -285,7 +284,7 @@ void possibles_pion_haut_J2(int c,int i) //Renvoie un char représentant un pion
 		//Version portable
 		//printf("Q'");
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("O'");
 		couleur("0");
 	}
@@ -297,9 +296,9 @@ void possibles_pion_haut_J2(int c,int i) //Renvoie un char représentant un pion
 
 void possibles_pion_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf("  ");
-	else if (i == fabs(c) && c>0) //pion possible J2
+	else if (i == abs(c) && c>0) //pion possible J2
 	{
 		//Version Windows
 		//color(5,0);
@@ -308,7 +307,7 @@ void possibles_pion_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 		//Version portable
 		//printf("Q ");
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("O ");
 		couleur("0");
 	}
@@ -320,7 +319,7 @@ void possibles_pion_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 
 void possibles_pion_mil_J2(int c)
 {	
-	if (fabs(c) < 5)
+	if (abs(c) < 5)
 		printf("  ");
 	else if (c == -5)
 		printf("X ");
@@ -333,7 +332,7 @@ void possibles_pion_mil_J2(int c)
 		//Version portable
 		//printf("Q ");
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("X ");
 		couleur("0");
 	}
@@ -348,7 +347,7 @@ void possibles_pion_mil_J2(int c)
 		//Version portable
 		//printf("Q%c",c%10+48); 
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("X ");
 		couleur("0");
 	} 
@@ -363,7 +362,7 @@ void possibles_pion_mil_J2(int c)
 		//Version portable
 		//printf("%cQ",c+48);	
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("X ");
 		couleur("0");
 	}		 
@@ -371,9 +370,9 @@ void possibles_pion_mil_J2(int c)
 
 void possibles_pion_bas_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
-	if (i > fabs(c))
+	if (i > abs(c))
 		printf(" ,");
-	else if (i == fabs(c) && c>0) //pion possible J2
+	else if (i == abs(c) && c>0) //pion possible J2
 	{
 		//Version Windows
 		//color(5,0);
@@ -382,7 +381,7 @@ void possibles_pion_bas_J2(int c,int i) //Renvoie un char représentant un pion 
 		//Version portable
 		//printf("Q,");
 		//Version Linux
-		couleur("34");
+		couleur("32");
 		printf("O,");
 		couleur("0");
 	}
@@ -586,7 +585,7 @@ void display_pions_possibles(int T[25], int joueur, int *Cimetiere_IA, int *Cime
 	printf("   11  9   7     6   4   2\n");
 }
 
-void afficher(int T[26])
+void afficher(int T[25])
 {
 	int i;
 	
@@ -595,3 +594,14 @@ void afficher(int T[26])
 	printf("\n");
 }
 
+void initialiser_pions_plateau(int T[25])
+{
+	T[1]=-2;
+	T[6]=5;
+	T[8]=3;
+	T[12]=-5;
+	T[13]=5;
+	T[17]=-3;
+	T[19]=-5;
+	T[24]=2;
+}
