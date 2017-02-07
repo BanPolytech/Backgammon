@@ -18,7 +18,7 @@ tpc coups_possibles(int T[], int joueur, int *taille);
 
 void tour_joueur(int T[], int J) {
 
-	int i, pos, de1, de2, tailleposs;
+	int i, pos, de1, de2, tailleposs = 0;
 	tpc poss;
 
     srand(time(NULL)); // initialisation de rand
@@ -29,22 +29,40 @@ void tour_joueur(int T[], int J) {
 	tpc coups = coups_possibles(T, J, &tailleposs);
 	//display_pions_possibles(T);
 
-	for (i = 0; i < tailleposs; ++i)
-	{
-		printf("%d: %d + %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart + coups[i].deplacement);
+	if (J==U1) {
+		for (i = 0; i < tailleposs; ++i)
+		{
+			printf("%d: %d + %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart + coups[i].deplacement);
+		}
+	} else {
+		for (i = 0; i < tailleposs; ++i)
+		{
+			printf("%d: %d - %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart - coups[i].deplacement);
+		}
 	}
+
+
 	do {
 		pos = choix_coup(T, J);
 		poss = possib_deplacement(T, de1, de2, coups, pos, &tailleposs);
 	}while(tailleposs <= 0);
 
 	//display_coups_possibles(T, pos, poss);
-	for (i = 0; i < tailleposs; ++i)
-	{
-		printf("%d: %d + %d\n", i, poss[i].depart, poss[i].deplacement);
+	if (J==U1) {
+		for (i = 0; i < tailleposs; ++i)
+		{
+			printf("%d: %d + %d\n", i, poss[i].depart, poss[i].deplacement);
+		}
+	} else {
+		for (i = 0; i < tailleposs; ++i)
+		{
+			printf("%d: %d - %d\n", i, poss[i].depart, poss[i].deplacement);
+		}
 	}
-
+	
 	choix_deplacement(T, pos, poss, tailleposs);
+
+	afficher(T);
 
 	free(poss);
 	free(coups);
@@ -65,9 +83,9 @@ int choix_coup(int T[], int joueur) {
 
 	if(joueur == U1) {
 		do {
-		printf("Lequel de vos pions voulez-vous jouer?\nVeuillez indiquer le numéro de colonne :");
-		scanf("%d",&pos);
-		printf("\n");
+			printf("Lequel de vos pions voulez-vous jouer?\nVeuillez indiquer le numéro de colonne :");
+			scanf("%d",&pos);
+			printf("\n");
 		}while (T[pos] >= 0);
 		printf("\n");
 	} else if(joueur == U2) {
@@ -85,35 +103,44 @@ int choix_coup(int T[], int joueur) {
 
 void choix_deplacement(int T[], int pos, tpc poss, int taille) {
 
-	int choix, i=0, g=0;
+	int choix, i=0, j=0, g=0;
 
 	do {
 		i=0;
 		printf("Veuillez choisir le coup que vous voulez jouer parmi ceux possibles\nVeuillez indiquer le numéro de colonne :");
 		scanf("%d",&choix);
-
-		for(i=0;i<taille;i++) {
-			if (choix == poss[i].depart + poss[i].deplacement) {
-				g=1;
+		if(poss[0].joueur == U1) {
+			for(i=0;i<taille;i++) {
+				if (choix == poss[i].depart + poss[i].deplacement) {
+					g=1;
+					j=i;
+				}
+			}
+		} else if (poss[0].joueur == IA || poss[0].joueur == U2) {
+			for(i=0;i<taille;i++) {
+				if (choix == poss[i].depart - poss[i].deplacement) {
+					g=1;
+					j=i;
+				}
 			}
 		}
 
 	}while(!g);
 
-	if(poss[i].joueur == IA || poss[i].joueur == U2) {
-		T[poss[i].depart] -= 1;
-		T[poss[i].depart + poss[i].deplacement] += 1;
-	} else if(poss[i].joueur == U1) {
-		T[poss[i].depart] += 1;
-		T[poss[i].depart + poss[i].deplacement] -= 1;
+	if(poss[j].joueur == IA || poss[j].joueur == U2) {
+		T[poss[j].depart] -= 1;
+		T[poss[j].depart - poss[j].deplacement] += 1;
+	} else if(poss[j].joueur == U1) {
+		T[poss[j].depart] += 1;
+		T[poss[j].depart + poss[j].deplacement] -= 1;
 	}	
 }
 
 tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille) {
 
-	int i=0, j=0;
 	tpc poss;
 	poss = (tpc)malloc(sizeof(coup));
+	int i=0, j=0;
 
 	for(i=0; i < *taille; i++) {
 		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2) || (c[i].depart == pos && c[i].deplacement == de1 + de2)) {
@@ -121,7 +148,7 @@ tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille) {
 			j++;
 		}
 	}
-	*taille = j;
+	*taille = j;	//taille change pour la nouvelle taille de la table de "deplacements"
 	return poss;
 
 }
@@ -132,26 +159,25 @@ tpc coups_possibles(int T[], int joueur, int *taille) {
 	tpc poss;
 	poss = (tpc)malloc(sizeof(coup));
 	int k = 0;
-	int combinaisons[21][2] = {{1,1},{1,2},{1,3},{1,4},{1,5},{1,6},{2,2},{2,3},{2,4},{2,5},{2,6},{3,3},{3,4},{3,5},{3,6},{4,4},{4,5},{4,6},{5,5},{5,6},{6,6}};
 
 	for (int i = 1; i < TMAX; ++i) {
 		if((joueur == IA || joueur == U2) && T[i] > 0) {
-			for (int j = 21; j > 0; --j) {
-				if(T[i - combinaisons[j][0]] >= 0) {
-					poss[k] = definir_coup(joueur, i, combinaisons[j][0]);
+			for (int j = 1; j <= 6; ++j) {
+				if(T[i - j] >= 0) {
+					poss[k] = definir_coup(joueur, i, j);
 					k++;
-				} else if(T[i - combinaisons[j][1]] >= 0) {
-					poss[k] = definir_coup(joueur, i, combinaisons[j][1]);
+				} else if (i - j == 0) {
+					poss[k] = definir_coup(joueur, i, j);
 					k++;
 				}
 			}
 		} else if (joueur == U1 && T[i] < 0) {
-			for (int j = 0; j < 21; ++j) {
-				if(T[i + combinaisons[j][0]] <= 0) {
-					poss[k] = definir_coup(joueur, i, combinaisons[j][0]);
+			for (int j = 1; j <= 6; ++j) {
+				if(T[i + j] <= 0) {
+					poss[k] = definir_coup(joueur, i, j);
 					k++;
-				} else if(T[i + combinaisons[j][1]] <= 0) {
-					poss[k] = definir_coup(joueur, i, combinaisons[j][1]);
+				} else if (i + j == 25) {
+					poss[k] = definir_coup(joueur, i, j);
 					k++;
 				}
 			}
