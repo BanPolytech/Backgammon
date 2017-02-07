@@ -1,0 +1,41 @@
+<p align="center">
+  <b>First Issue: How to model the Backgammon's elements?</b><br>
+  <br><br>
+</p>
+
+In other words: Wich data structure should we choose?
+
+<p align="center">
+<img src="http://mathias.hadji.etu.perso.luminy.univ-amu.fr/image-echequier.png">
+<br>
+</p>
+
+In Backgammon, the board contain 24 triangles called "points" and a ridge called "bar" which contain the hit checkers.
+Therefore, the board is modelled by a two-dimensional array: T[ i ][ j ]
+
+i : include &isin;
+
+There is a Chessboard :
+
+an array : T[x][y]
+
+
+x : x= 26, Number of pawns
+
+y : y= 2, The number of the player (0 for White, 1 for Black)
+
+There are White and Black checkers (or pawns) :
+
+BLACK : o
+
+RED : x
+
+
+
+<h1>BACKGAMMON</h1>
+<h2>Règles</h2>
+
+<p>On implémente d’abord l’échiquier avec les pions
+
+	
+

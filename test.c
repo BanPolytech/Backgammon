@@ -541,49 +541,98 @@ void display_pions_possibles_cim(int T[25],int joueur, int Cimetiere_IA, int Cim
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	printf(" ____________________________\n");
-	printf("|%c'%c'%c'%c'%c'%c |", pion(T[13],1),pion(T[14],1), pion(T[15],1), pion(T[16],1), pion(T[17],1), pion(T[18],1));
-	possibles_pion_J2(Cimetiere_IA,1);
-	printf("|%c'%c'%c'%c'%c'%c |\\ Sortie : %d \n", pion(T[19],1),pion(T[20],1), pion(T[21],1), pion(T[22],1), pion(T[23],1), pion(T[24],1), Sortie_U);
+	if (joueur == U1)
+	{	
+		printf("|%c'%c'%c'%c'%c'%c |", pion(T[13],1),pion(T[14],1), pion(T[15],1), pion(T[16],1), pion(T[17],1), pion(T[18],1));
+		possibles_pion_J2(Cimetiere_IA,1);
+		printf("|%c'%c'%c'%c'%c'%c |\\ Sortie : %d \n", pion(T[19],1),pion(T[20],1), pion(T[21],1), pion(T[22],1), pion(T[23],1), pion(T[24],1), Sortie_U);
 
-	for (i=2; i<5; i++)
-	{
-		printf("|%c %c %c %c %c %c |", pion(T[13],i),pion(T[14],i), pion(T[15],i), pion(T[16],i), pion(T[17],i), pion(T[18],i));	
-		possibles_pion_J2(Cimetiere_IA,i);
-		printf("|%c %c %c %c %c %c |\\ \n", pion(T[19],i),pion(T[20],i), pion(T[21],i), pion(T[22],i), pion(T[23],i), pion(T[24],i));
+		for (i=2; i<5; i++)
+		{
+			printf("|%c %c %c %c %c %c |", pion(T[13],i),pion(T[14],i), pion(T[15],i), pion(T[16],i), pion(T[17],i), pion(T[18],i));	
+			possibles_pion_J2(Cimetiere_IA,i);
+			printf("|%c %c %c %c %c %c |\\ \n", pion(T[19],i),pion(T[20],i), pion(T[21],i), pion(T[22],i), pion(T[23],i), pion(T[24],i));
+		}
+
+		printf("|");
+		for (k=13;k<18;k++) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|");
+		pion_mil(Cimetiere_IA);
+		printf("|");
+		for (k=19;k<24;k++) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|\\\n");
+
+		printf("|            |  |            |\\\n");
+
+		printf("|");
+		for (k=12;k>7;k--) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|");
+		pion_mil(Cimetiere_U);
+		printf("|");
+		for (k=6;k>1;k--) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|\\\n");
+
+		for (i=2; i<5; i++)
+		{
+			printf("|%c %c %c %c %c %c |", pion(T[12],4),pion(T[11],4), pion(T[10],4), pion(T[9],4), pion(T[8],4), pion(T[7],4));	
+			possibles_pion_J2(Cimetiere_IA,i);
+			printf(" |%c %c %c %c %c %c |\\ \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1));
+		}
+
+		printf("|%c,%c,%c,%c,%c,%c |", pion(T[12],1),pion(T[11],1), pion(T[10],1), pion(T[9],1), pion(T[8],1), pion(T[7],1) );
+		possibles_pion_J2(Cimetiere_U,1);
+		printf("|%c,%c,%c,%c,%c,%c |\\ Sortie : %d \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1), Sortie_IA);
 	}
+	else if (joueur == U2)
+	{	
+		printf("|%c'%c'%c'%c'%c'%c |", pion(T[13],1),pion(T[14],1), pion(T[15],1), pion(T[16],1), pion(T[17],1), pion(T[18],1));
+		possibles_pion_J2(Cimetiere_IA,1);
+		printf("|%c'%c'%c'%c'%c'%c |\\ Sortie : %d \n", pion(T[19],1),pion(T[20],1), pion(T[21],1), pion(T[22],1), pion(T[23],1), pion(T[24],1), Sortie_U);
 
-	printf("|");
-	for (k=13;k<18;k++) pion_mil(T[k]);
-	pion_mil(T[k]);
-	printf("|");
-	pion_mil(Cimetiere_IA);
-	printf("|");
-	for (k=19;k<24;k++) pion_mil(T[k]);
-	pion_mil(T[k]);
-	printf("|\\\n");
+		for (i=2; i<5; i++)
+		{
+			printf("|%c %c %c %c %c %c |", pion(T[13],i),pion(T[14],i), pion(T[15],i), pion(T[16],i), pion(T[17],i), pion(T[18],i));	
+			possibles_pion_J2(Cimetiere_IA,i);
+			printf("|%c %c %c %c %c %c |\\ \n", pion(T[19],i),pion(T[20],i), pion(T[21],i), pion(T[22],i), pion(T[23],i), pion(T[24],i));
+		}
 
-	printf("|            |  |            |\\\n");
+		printf("|");
+		for (k=13;k<18;k++) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|");
+		pion_mil(Cimetiere_IA);
+		printf("|");
+		for (k=19;k<24;k++) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|\\\n");
 
-	printf("|");
-	for (k=12;k>7;k--) pion_mil(T[k]);
-	pion_mil(T[k]);
-	printf("|");
-	pion_mil(Cimetiere_U);
-	printf("|");
-	for (k=6;k>1;k--) pion_mil(T[k]);
-	pion_mil(T[k]);
-	printf("|\\\n");
+		printf("|            |  |            |\\\n");
 
-	for (i=2; i<5; i++)
-	{
-		printf("|%c %c %c %c %c %c |", pion(T[12],4),pion(T[11],4), pion(T[10],4), pion(T[9],4), pion(T[8],4), pion(T[7],4));	
-		possibles_pion_J2(Cimetiere_IA,i);
-		printf(" |%c %c %c %c %c %c |\\ \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1));
+		printf("|");
+		for (k=12;k>7;k--) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|");
+		pion_mil(Cimetiere_U);
+		printf("|");
+		for (k=6;k>1;k--) pion_mil(T[k]);
+		pion_mil(T[k]);
+		printf("|\\\n");
+
+		for (i=2; i<5; i++)
+		{
+			printf("|%c %c %c %c %c %c |", pion(T[12],4),pion(T[11],4), pion(T[10],4), pion(T[9],4), pion(T[8],4), pion(T[7],4));	
+			possibles_pion_J2(Cimetiere_IA,i);
+			printf(" |%c %c %c %c %c %c |\\ \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1));
+		}
+
+		printf("|%c,%c,%c,%c,%c,%c |", pion(T[12],1),pion(T[11],1), pion(T[10],1), pion(T[9],1), pion(T[8],1), pion(T[7],1) );
+		possibles_pion_J2(Cimetiere_U,1);
+		printf("|%c,%c,%c,%c,%c,%c |\\ Sortie : %d \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1), Sortie_IA);
 	}
-
-	printf("|%c,%c,%c,%c,%c,%c |", pion(T[12],1),pion(T[11],1), pion(T[10],1), pion(T[9],1), pion(T[8],1), pion(T[7],1) );
-	possibles_pion_J2(Cimetiere_U,1);
-	printf("|%c,%c,%c,%c,%c,%c |\\ Sortie : %d \n", pion(T[6],1),pion(T[5],1), pion(T[4],1), pion(T[3],1), pion(T[2],1), pion(T[1],1), Sortie_IA);
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\\\n");
 	printf(" 12  10   8         5   3   1\n");
 	printf("   11  9    7     6   4   2\n");
