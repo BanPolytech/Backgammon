@@ -28,18 +28,30 @@ int main(void)
 	if(c == 0) {
 		while(!win){
 
-			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, U1, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			if (Sortie_U == 15) {
+				win = 1;
+			}
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, U2, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			if (Sortie_IA == 15) {
+				win = 1;
+			}
 		}
 	} else if(c == 1) {
 		while(!win){
 
-			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, U1, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			if (Sortie_U == 15) {
+				win = 1;
+			}
+			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
 			tour_joueur(T, IA, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+			if (Sortie_IA == 15) {
+				win = 1;
+			}
 		}
 	}
 	return 0;
