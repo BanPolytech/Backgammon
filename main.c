@@ -29,17 +29,17 @@ int main(void)
 		while(!win){
 
 			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			tour_joueur(T, U1);
+			tour_joueur(T, U1, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
 			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			tour_joueur(T, U2);
+			tour_joueur(T, U2, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
 		}
 	} else if(c == 1) {
 		while(!win){
 
 			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			tour_joueur(T, U1);
+			tour_joueur(T, U1, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
 			display(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-			tour_joueur(T, IA);
+			tour_joueur(T, IA, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
 		}
 	}
 	return 0;
