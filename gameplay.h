@@ -54,8 +54,8 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 	//	GENERATION DU TABLEAU DE COUPS
 	coups = coups_possibles(T, J, &taillecoup, step);
 	display_pions_possibles(T, J, *Cim_IA, *Cim_U, *S_IA, *S_U);
-
-/*	if (J==U1) {
+/*
+	if (J==U1) {
 		for (i = 0; i < taillecoup; ++i)
 		{
 			printf("%d: %d + %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart + coups[i].deplacement);
@@ -185,11 +185,9 @@ tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille) {
 
 	tpc depl;
 	depl = (tpc)malloc(sizeof(coup));
-	printf("malloc depl\n");
 	int i=0, j=0;
 
 	for(i=0; i < *taille; i++) {
-		printf("%d\n", c[i].depart);
 		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2)) {
 			depl = (tpc)realloc(depl, sizeof(coup) * (j + 1));
 			depl[j] = c[i];
@@ -218,14 +216,16 @@ void choix_deplacement(int T[], int *de1, int *de2, tpc poss, int taille, int *C
 					}
 					if (poss[i].depart == 0) {
 						*Cim_U -= 1;
+					} else {
+						T[poss[i].depart] += 1;
 					}
-					T[poss[i].depart] += 1;
 					if (choix == 25) {
 						*S_U += 1;
 					} else {
-						T[poss[i].depart + poss[j].deplacement] -= 1;
+						T[poss[i].depart + poss[i].deplacement] -= 1;
 					}
 					g=1;
+					j = i;
 					i = taille;
 				}
 			}
@@ -238,14 +238,16 @@ void choix_deplacement(int T[], int *de1, int *de2, tpc poss, int taille, int *C
 					}
 					if (poss[i].depart == 25) {
 						*Cim_IA -= 1;
+					} else {
+						T[poss[i].depart] -= 1;
 					}
-					T[poss[i].depart] -= 1;
 					if (choix == 0) {
 						*S_IA += 1;				
 					} else {
-						T[poss[i].depart - poss[j].deplacement] += 1;
+						T[poss[i].depart - poss[i].deplacement] += 1;
 					}
 					g=1;
+					j = i;
 					i = taille;
 				}
 			}
@@ -302,6 +304,7 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 		if(joueur == IA || joueur == U2) {
 			for (i=1; i<=6; i++) {
 				if(T[25 - i] >= -1) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, 25, i);
 						k++;
 				}
@@ -309,6 +312,7 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 		} else if (joueur == U1) {
 			for (i=1; i<=6; i++) {
 				if(T[0 + i] <= 1) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, 0, i);
 						k++;
 				}

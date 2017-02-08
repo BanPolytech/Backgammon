@@ -1188,7 +1188,7 @@ void afficher(int T[26])
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
 	printf("\n");
 }
 
