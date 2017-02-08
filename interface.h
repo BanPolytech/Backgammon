@@ -617,11 +617,16 @@ void display_pions_possibles(int T[25], int joueur, int Cimetiere_IA, int Cimeti
 
 void possibles_coups_J1(int T[25], int c, int k,int i, int pos, int de1, int de2)
 {	
-	if (k == pos && abs(c) == i) //on est sur le pion de départ
+	if (k == pos) //on est sur le pion de départ
 	{
-		couleur("31");
-		printf("X");
-		couleur("0");	
+		if (abs(c)==i)
+		{
+			couleur("31");
+			printf("X");
+			couleur("0");	
+		}
+		else 
+			printf("%c", pion(c, i));	
 	}
 	else if (c>1  ||   (k != pos+de1    &&    k != pos+de2 &&    ((T[pos+de1]>0 && T[pos+de2]>0)   ||   k != pos+de1+de2) ))	
 		printf("%c", pion(c, i)); // on ne peut pas jouer, on affiche normalement
@@ -698,11 +703,16 @@ void possibles_coups_mil_J1(int T[25], int c, int k, int pos, int de1, int de2)
 
 void possibles_coups_J2(int T[25], int c, int k,int i, int pos, int de1, int de2)
 {	
-	if (k == pos && c == i) //on est sur le pion de départ
+	if (k == pos) //on est sur la case de départ
 	{
-		couleur("32");
-		printf("O");
-		couleur("0");	
+		if (c==i)
+		{
+			couleur("32");
+			printf("O");
+			couleur("0");	
+		}
+		else 
+			printf("%c", pion(c, i));
 	}
 	else if (c<-1  ||   (k != pos-de1    &&    k != pos-de2 &&    ((T[pos-de1]<0 && T[pos-de2]<0)   ||   k != pos-de1-de2) ))	
 		printf("%c", pion(c, i)); // on ne peut pas jouer, on affiche normalement
@@ -1085,7 +1095,7 @@ void display_coups_possibles_cim(int T[25], int joueur,int position, int de1, in
 		}
 		possibles_coups_J2(T, T[k], k, 1, position, de1, de2);
 		printf(" |");
-		possibles_pion_J2(Cimetiere_IA,i);
+		possibles_pion_J2(Cimetiere_IA,1);
 		printf("|");
 		for (k=19;k<24;k++)
 		{
@@ -1158,7 +1168,7 @@ void display_coups_possibles_cim(int T[25], int joueur,int position, int de1, in
 
 void display_coups_possibles(int T[25], int joueur,int position, int de1, int de2, int Cimetiere_IA, int Cimetiere_U, int Sortie_IA, int Sortie_U)
 {
-	if ((joueur == U1 && T[position]>-1) || (joueur == U2 && T[position]<1))
+	if (((joueur == U1 && T[position]>-1) || (joueur == U2 && T[position]<1)) && position !=0 && position != 25)
 	{
 		printf("Coup impossible\n");
 	}
@@ -1173,23 +1183,12 @@ void display_coups_possibles(int T[25], int joueur,int position, int de1, int de
 	}
 }
 
-void afficher(int T[25])
+void afficher(int T[26])
 {
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
 	printf("\n");
 }
 
-void initialiser_pions_plateau(int T[25])
-{
-	T[1]=-2;
-	T[6]=5;
-	T[8]=3;
-	T[12]=-5;
-	T[13]=5;
-	T[17]=-3;
-	T[19]=-5;
-	T[24]=2;
-}
