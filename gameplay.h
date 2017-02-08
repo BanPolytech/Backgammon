@@ -53,8 +53,9 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 
 	//	GENERATION DU TABLEAU DE COUPS
 	coups = coups_possibles(T, J, &taillecoup, step);
+	display_pions_possibles(T, J, *Cim_IA, *Cim_U, *S_IA, *S_U);
 
-	if (J==U1) {
+/*	if (J==U1) {
 		for (i = 0; i < taillecoup; ++i)
 		{
 			printf("%d: %d + %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart + coups[i].deplacement);
@@ -65,12 +66,14 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 			printf("%d: %d - %d -> %d\n", i, coups[i].depart, coups[i].deplacement, coups[i].depart - coups[i].deplacement);
 		}
 	}
+*/
 		//	BOUCLE DU CHOIX D'UN COUP QUI SOIT POSSIBLE
 		do {
 			tailleposs = taillecoup;
-
 			//	CHOIX DU PION QUE L'ON VEUT JOUER
 			pos = choix_coup(T, J, step);
+			display_coups_possibles(T, J, pos, de1, de2, *Cim_IA, *Cim_U, *S_IA, *S_U);
+
 
 			//	GENERATION DU TABLEAU DE POSSIBILITES
 			poss = possib_deplacement(T, de1, de2, coups, pos, &tailleposs);
@@ -80,7 +83,7 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 			}
 		}while(tailleposs <= 0);
 
-
+/*
 		if (J==U1) {
 			for (i = 0; i < tailleposs; ++i)
 			{
@@ -92,27 +95,21 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 				printf("%d: %d - %d\n", i, poss[i].depart, poss[i].deplacement);
 			}
 		}
-
+*/
 		//	CHOIX DU DEPLACEMENT ET MODIFICATION DU TABLEAU
 		choix_deplacement(T, &de1, &de2, poss, tailleposs, Cim_IA, Cim_U, S_IA, S_U);
 
 		//	AFFICHAGE DU TABLEAU/RESULTAT
-		display(T, Cim_IA, Cim_U, S_IA, S_U);
+		display(T, *Cim_IA, *Cim_U, *S_IA, *S_U);
 
 		//	DES RESTANT
 		printf("\nDés disponible :\nd1: %d, d2: %d\n\n", de1, de2);
-
-		afficher(T);
 
 		//	DESALLOCATION MEMOIRE
 		free(poss);
 		free(coups);
 
 	}while(de1 != 0 || de2 != 0);
-
-
-	
-
 
 }
 
@@ -162,7 +159,6 @@ int choix_coup(int T[], int joueur, int step) {
 		if(step == 0) {
 			return pos = 0;
 		}
-		printf("Si pos = 0 on ne doit pas passer la\n");
 		do {
 			printf("Lequel de vos pions voulez-vous jouer?\nVeuillez indiquer le numéro de colonne :");
 			scanf("%d",&pos);
@@ -187,19 +183,21 @@ int choix_coup(int T[], int joueur, int step) {
 
 tpc possib_deplacement(int T[], int de1, int de2, tpc c, int pos, int *taille) {
 
-	tpc poss;
-	poss = (tpc)malloc(sizeof(coup));
-
+	tpc depl;
+	depl = (tpc)malloc(sizeof(coup));
+	printf("malloc depl\n");
 	int i=0, j=0;
 
 	for(i=0; i < *taille; i++) {
+		printf("%d\n", c[i].depart);
 		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2)) {
-			poss[j] = definir_coup(c[i].joueur, c[i].depart, c[i].deplacement);
+			depl = (tpc)realloc(depl, sizeof(coup) * (j + 1));
+			depl[j] = c[i];
 			j++;
 		}
 	}
 	*taille = j;	//taille change pour la nouvelle taille de la table de "deplacements"
-	return poss;
+	return depl;
 
 }
 
@@ -277,9 +275,11 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 			if((joueur == IA || joueur == U2) && T[i] > 0) {
 				for (int j = 1; j <= 6; ++j) {
 					if(i - j > 0 && T[i - j] >= -1) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
 						k++;
 					} else if (i - j == 0  && step == 2) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
 						k++;
 					}
@@ -287,9 +287,11 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 			} else if (joueur == U1 && T[i] < 0) {
 				for (int j = 1; j <= 6; ++j) {
 					if(i + j < 25 && T[i + j] <= 1) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
 						k++;
 					} else if (i + j == 25 && step == 2) {
+						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
 						k++;
 					}
