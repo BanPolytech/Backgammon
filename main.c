@@ -3,6 +3,7 @@
 #include "initialisation.h"
 #include "interface.h"
 #include "gameplay.h"
+#include "IA.h"
 
 #define IA 0
 #define U1 1
@@ -47,8 +48,8 @@ int main(void)
 			if (Sortie_U == 15) {
 				win = 1;
 			}
-			display(T, Cimetiere_IA, Cimetiere_U, Sortie_IA, Sortie_U);
-			tour_joueur(T, IA, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
+
+			tour_IA(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
 			if (Sortie_IA == 15) {
 				win = 1;
 			}

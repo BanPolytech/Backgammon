@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "interface.h"
-#include "gameplay.h"
-#include "initialisation.h"
 
 #define PROF_MAX 4
 #define MIN 0
@@ -109,7 +106,7 @@ void dejouer(coup coup_a_jouer, int T[], int *Cim_IA, int *Cim_U, int *S_IA, int
 		} else {
 			T[coup_a_jouer.depart] += 1;
 		}
-		if (*sort = 1) {
+		if (*sort == 1) {
 			*S_IA -= 1;				
 		} else {
 			T[coup_a_jouer.depart - coup_a_jouer.deplacement] -= 1;
@@ -215,13 +212,19 @@ coup backtrack(int de1, int de2, int T[], int *Cim_IA, int *Cim_U, int *S_IA, in
 {
 	tpc CoupsPoss, coups;
 	coup choix;
-	int c,step, taillecoup = 0, tailleposs = 0, tmp,score, num_choix;
+	int c, step, taillecoup = 0, tailleposs = 0, tmp,score, num_choix;
 	//int *Scores;
 	int mange = 0, sort = 0;
 
 	step = etape(T, IA, *Cim_IA, *Cim_U, *S_IA, *S_U);
 	coups = coups_possibles(T, IA, &taillecoup, step); //tous les coups avec toutes combinaisons de dés 
-	CoupsPoss = possib_deplacement_departIA(T, de1, de2, coups, &tailleposs);
+
+	do {
+		CoupsPoss = possib_deplacement_departIA(T, de1, de2, coups, &tailleposs);
+		if(tailleposs <= 0) {
+			free(CoupsPoss);
+		}
+	}while(tailleposs <= 0);
 	tmp = MIN;
 
 	printf("Nb de coup possibles sans dé et pos: %d\n", taillecoup);
