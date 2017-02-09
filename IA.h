@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "interface.h"
 #include "gameplay.h"
+#include "initialisation.h"
 
 #define PROF_MAX 4
 #define MIN 0
