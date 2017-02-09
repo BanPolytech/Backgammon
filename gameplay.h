@@ -122,7 +122,7 @@ int etape(int T[], int J, int Cim_IA, int Cim_U, int S_IA, int S_U) {
 	int i=0, sum=0;
 
 	if (J == U1) {
-		for (int i = 0; i < 6; ++i)
+		for (i = 0; i < 6; ++i)
 		{
 			sum += T[19+i];
 		}
@@ -135,7 +135,7 @@ int etape(int T[], int J, int Cim_IA, int Cim_U, int S_IA, int S_U) {
 		}
 
 	} else if ( J == U2 || J == IA) {
-		for (int i = 0; i < 6; ++i)
+		for (i = 0; i < 6; ++i)
 		{
 			sum += T[1+i];
 		}
@@ -270,12 +270,12 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 	tpc poss;
 	poss = (tpc)malloc(sizeof(coup));
 
-	int k = 0, i=0;
+	int j=0,k = 0, i=0;
 
 	if (step > 0) {
 		for (i = 1; i < TMAX; ++i) {
 			if((joueur == IA || joueur == U2) && T[i] > 0) {
-				for (int j = 1; j <= 6; ++j) {
+				for (j = 1; j <= 6; ++j) {
 					if(i - j > 0 && T[i - j] >= -1) {
 						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
@@ -287,7 +287,7 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 					}
 				}
 			} else if (joueur == U1 && T[i] < 0) {
-				for (int j = 1; j <= 6; ++j) {
+				for (j = 1; j <= 6; ++j) {
 					if(i + j < 25 && T[i + j] <= 1) {
 						poss = (tpc)realloc(poss, sizeof(coup) * (k + 1));
 						poss[k] = definir_coup(joueur, i, j);
