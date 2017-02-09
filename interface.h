@@ -651,9 +651,11 @@ void possibles_coups_J1(int T[25], int c, int k,int i, int pos, int de1, int de2
 
 void possibles_coups_mil_J1(int T[25], int c, int k, int pos, int de1, int de2)
 {
-	if (k == pos && c <= -5)  //on est sur le pion de départ
+	if (k == pos)  //on est sur la case de départ
 	{
-		if (c == -5)
+		if (c > -5)
+			pion_mil(c);
+		else if (c == -5)
 		{	
 			couleur("31");
 			printf("X ");
@@ -737,8 +739,10 @@ void possibles_coups_J2(int T[25], int c, int k,int i, int pos, int de1, int de2
 
 void possibles_coups_mil_J2(int T[25], int c, int k, int pos, int de1, int de2)
 {
-	if (k == pos && c >= 5)  //on est sur le pion de départ
+	if (k == pos)  //on est sur la case de départ
 	{
+		if (c < 5)
+			pion_mil(c);
 		if (c == 5)
 		{	
 			couleur("32");
