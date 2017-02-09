@@ -80,6 +80,8 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 				
 			if (tailleposs <= 0) {
 				free(poss);
+				display_pions_possibles(T, J, *Cim_IA, *Cim_U, *S_IA, *S_U);
+
 			}
 		}while(tailleposs <= 0);
 
@@ -270,7 +272,11 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 	tpc poss;
 	poss = (tpc)malloc(sizeof(coup));
 
+<<<<<<< HEAD
 	int j=0,k = 0, i=0;
+=======
+	int k = 0, i=0 j =0;
+>>>>>>> origin/master
 
 	if (step > 0) {
 		for (i = 1; i < TMAX; ++i) {
