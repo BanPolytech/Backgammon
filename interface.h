@@ -1183,12 +1183,12 @@ void display_coups_possibles(int T[25], int joueur,int position, int de1, int de
 	}
 }
 
-void afficher(int T[26])
+void afficher(int T[25])
 {
 	int i;
 	
 	for (i=0;i<13;i++)
-		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13],T[i+13]);
+		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
 	printf("\n");
 }
 
