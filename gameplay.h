@@ -272,6 +272,7 @@ tpc coups_possibles(int T[], int joueur, int *taille, int step) {
 	tpc poss;
 	poss = (tpc)malloc(sizeof(coup));
 
+
 	int k=0, i=0, j=0;
 
 	if (step > 0) {
