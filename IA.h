@@ -159,9 +159,8 @@ tpc possib_deplacement_departIA(int T[], int de1, int de2, tpc c, int *taille)
 	//printf("malloc depl\n");
 	int i=0, j=0;
 
-	for(i=0; i < *taille; i++) {
-		printf("%d\n", c[i].depart);
-		if ((c[i].depart == pos && c[i].deplacement == de1) || (c[i].depart == pos && c[i].deplacement == de2)) {
+	for(i=0; i < *taille; i++) {\
+		if (c[i].deplacement == de1 || c[i].deplacement == de2) {
 			depl = (tpc)realloc(depl, sizeof(coup) * (j + 1));
 			depl[j] = c[i];
 			j++;
@@ -181,7 +180,7 @@ coup backtrack(int position, int de1, int de2, int T[], int *Cim_IA, int *Cim_U,
 	int mange = 0, sort = 0;
 
 	etape = etape(T, joueur, *Cim_IA, *Cim_U, *S_IA, *S_U);
-	coups = coups_possibles(T, IA, &taillecoup, step); //tous les coups avec toutes combinaisons de dés 
+	coups = coups_possibles(T, IA, &taillecoup, etape); //tous les coups avec toutes combinaisons de dés 
 	CoupsPoss = possib_deplacement_departIA(T, de1, de2, coups, &tailleposs);
 	
 
