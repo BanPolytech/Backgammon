@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "interface.h"
+#include "gameplay.h"
 
 #define PROF_MAX 4
 #define MIN 0
@@ -9,9 +10,9 @@
 
 
 //Déclarations:
-int evaluer(int T[25]);
+int evaluer(int T[]);
 void jouer(coup coup_a_jouer, int T[], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U, int * mange, int * sort);
-int backtrack_rec(int profondeur,int T[25], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U );
+int backtrack_rec(int profondeur,int T[], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U );
 int min(int a,int b);
 int max(int a,int b);
 void dejouer(coup coup_a_jouer, int T[], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U, int * mange, int * sort);
@@ -20,33 +21,11 @@ coup backtrack(int de1, int de2, int T[], int *Cim_IA, int *Cim_U, int *S_IA, in
 void tour_IA(int T[], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) ;
 
 
-
-/*-------------------------------------------------------------------------------*/
-/*                                      MAIN                                     */
-/*-------------------------------------------------------------------------------*/
-
-int main()
-{
-	int T[25]={0};
-	int Cimetiere_IA = 0,Cimetiere_U = 0, Sortie_IA = 0, Sortie_U = 0;
-	int fin=0;
-
-	initialiser_pions_plateau(T);
-	do
-	{
-		tour_joueur(T, U1, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-		if (!fin)
-			tour_IA(T, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U); 
-			//tour_joueur(T, U2, &Cimetiere_IA, &Cimetiere_U, &Sortie_IA, &Sortie_U);
-	}
-	while(!fin);
-}
-
 /*-------------------------------------------------------------------------------*/
 /*                               Nouvelles fonctions                             */
 /*-------------------------------------------------------------------------------*/
 
-int evaluer(int T[25])
+int evaluer(int T[])
 {
 	int k, somme=0;
 	for (k=1; k<24; k++)
