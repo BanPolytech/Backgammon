@@ -2,13 +2,20 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "couleurs.h"
+
 
 #define U1 1
 #define U2 2
 #define IA 0
 
+#ifndef COULEURS
+#define COULEURS
 
+#define clrscr() printf("\033[H\033[2J")
+#define couleur(param) printf("\033[%sm",param)
+
+
+#endif
 
 char pion(int c,int i) //Renvoie un char représentant un pion IA 0
 {									//un pion adversaire X, ou le vide		
