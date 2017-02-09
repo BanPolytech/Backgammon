@@ -1183,7 +1183,7 @@ void display_coups_possibles(int T[25], int joueur,int position, int de1, int de
 	}
 }
 
-void afficher(int T[26])
+void afficher(int T[25])
 {
 	int i;
 	
