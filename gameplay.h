@@ -80,6 +80,8 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 				
 			if (tailleposs <= 0) {
 				free(poss);
+				display_pions_possibles(T, J, *Cim_IA, *Cim_U, *S_IA, *S_U);
+
 			}
 		}while(tailleposs <= 0);
 
@@ -122,7 +124,7 @@ int etape(int T[], int J, int Cim_IA, int Cim_U, int S_IA, int S_U) {
 	int i=0, sum=0;
 
 	if (J == U1) {
-		for (int i = 0; i < 6; ++i)
+		for (i = 0; i < 6; ++i)
 		{
 			sum += T[19+i];
 		}
@@ -135,7 +137,7 @@ int etape(int T[], int J, int Cim_IA, int Cim_U, int S_IA, int S_U) {
 		}
 
 	} else if ( J == U2 || J == IA) {
-		for (int i = 0; i < 6; ++i)
+		for (i = 0; i < 6; ++i)
 		{
 			sum += T[1+i];
 		}
