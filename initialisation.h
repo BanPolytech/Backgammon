@@ -16,5 +16,3 @@ void initialiser_pions_plateau(int T[25])
 	T[19]=-5;
 	T[24]=2;
 }
-
-	//il faut definir qui joue en premier
