@@ -47,6 +47,7 @@ void display(int T[25], int Cimetiere_IA, int Cimetiere_U, int Sortie_IA, int So
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
 	k=13;
+	printf("\n");
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	printf(" ____________________________\n");
@@ -84,6 +85,7 @@ void display(int T[25], int Cimetiere_IA, int Cimetiere_U, int Sortie_IA, int So
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\\\n");
 	printf(" 12  10   8         5   3   1\n");
 	printf("   11  9    7     6   4   2\n");
+	printf("\n");
 }
 
 
@@ -100,13 +102,6 @@ void possibles_pion_haut_J1(int c,int i) //Renvoie un char représentant un pion
 		printf(" '");
 	else if (i == abs(c) && c<0) //pion possible J1
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("X'");
-		//color(7,0);
-		//Version portable
-		//printf("A'");
-		//Version Linux
 		couleur("31");
 		printf("X'");
 		couleur("0");
@@ -123,13 +118,6 @@ void possibles_pion(int c,int i) //Renvoie un char représentant un pion IA 0
 		printf("  ");
 	else if (i == abs(c) && c<0) //pion possible J1
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("X ");
-		//color(7,0);
-		//Version portable
-		//printf("A ");
-		//Version Linux
 		couleur("31");
 		printf("X ");
 		couleur("0");
@@ -146,13 +134,6 @@ void possibles_pion_mil_J1(int c)
 		printf("  ");
 	else if (c == -5)  //pion possible J1
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("X ");
-		//color(7,0);
-		//Version portable
-		//printf("A ");
-		//Version Linux
 		couleur("31");
 		printf("X ");
 		couleur("0");
@@ -161,13 +142,6 @@ void possibles_pion_mil_J1(int c)
 		printf("O ");
 	else if (c <= 10) //pion possible J1 >= 10
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("1%c",abs(c)%10+48);
-		//color(7,0);
-		//Version portable
-		//printf("A%c",c%10+48);
-		//Version Linux
 		couleur("31");
 		printf("1%c",abs(c)%10+48);
 		couleur("0");
@@ -176,13 +150,6 @@ void possibles_pion_mil_J1(int c)
 		printf("1%c",abs(c)%10+48);
 	else if(c < -5 )   //pion possible J1 entre 5 et 10 
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("%c ",c+48);
-		//color(7,0);
-		//Version portable
-		//printf("%cA",c+48);
-		//Version Linux
 		couleur("31");
 		printf("X ");
 		couleur("0");
@@ -197,13 +164,6 @@ void possibles_pion_bas_J1(int c,int i) //Renvoie un char représentant un pion 
 		printf(" ,");
 	else if (i == abs(c) && c<0) //pion possible J1
 	{
-		//Version Windows
-		//color(12,0);
-		//printf("X,");
-		//color(7,0);
-		//Version portable
-		//printf("A,");
-		//Version Linux
 		couleur("31");
 		printf("X,");
 		couleur("0");
@@ -220,13 +180,6 @@ void possibles_pion_haut_J2(int c,int i) //Renvoie un char représentant un pion
 		printf(" '");
 	else if (i == abs(c) && c>0) //pion possible J2
 	{
-		//Version Windows
-		//color(5,0);  
-		//printf("O'");
-		//color(7,0);
-		//Version portable
-		//printf("Q'");
-		//Version Linux
 		couleur("32");
 		printf("O'");
 		couleur("0");
@@ -243,13 +196,6 @@ void possibles_pion_J2(int c,int i) //Renvoie un char représentant un pion IA 0
 		printf("  ");
 	else if (i == abs(c) && c>0) //pion possible J2
 	{
-		//Version Windows
-		//color(5,0);
-		//printf("O ");
-		//color(7,0);
-		//Version portable
-		//printf("Q ");
-		//Version Linux
 		couleur("32");
 		printf("O ");
 		couleur("0");
@@ -268,13 +214,6 @@ void possibles_pion_mil_J2(int c)
 		printf("X ");
 	else if (c == 5)   //pion possible J2
 	{
-		//Version Windows
-		//color(5,0);
-		//printf("O ");
-		//color(7,0);
-		//Version portable
-		//printf("Q ");
-		//Version Linux
 		couleur("32");
 		printf("O ");
 		couleur("0");
@@ -283,13 +222,6 @@ void possibles_pion_mil_J2(int c)
 		printf("1%c",abs(c)%10+48);
 	else if (c >= 10)  //pion possible J2 >= 10
 	{
-		//Version Windows
-		//color(5,0);
-		//printf("1%c",abs(c)%10+48); 
-		//color(7,0);
-		//Version portable
-		//printf("Q%c",c%10+48); 
-		//Version Linux
 		couleur("32");
 		printf("1%c",abs(c)%10+48);
 		couleur("0");
@@ -298,13 +230,6 @@ void possibles_pion_mil_J2(int c)
 		printf("%c ",c+48);
 	else    //pion possible J2 entre 5 et 10
 	{
-		//Version Windows
-		//color(5,0);
-		//printf("%c ",c+48);
-		//color(7,0);
-		//Version portable
-		//printf("%cQ",c+48);	
-		//Version Linux
 		couleur("32");
 		printf("O ");
 		couleur("0");
@@ -317,13 +242,6 @@ void possibles_pion_bas_J2(int c,int i) //Renvoie un char représentant un pion 
 		printf(" ,");
 	else if (i == abs(c) && c>0) //pion possible J2
 	{
-		//Version Windows
-		//color(5,0);
-		//printf("O,");
-		//color(7,0);
-		//Version portable
-		//printf("Q,");
-		//Version Linux
 		couleur("32");
 		printf("O,");
 		couleur("0");
@@ -344,6 +262,7 @@ void display_pions_possibles_gen(int T[25], int joueur, int Cimetiere_IA, int Ci
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
 	k=13;
+	printf("\n");
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	//Affichage première ligne du plateau
@@ -514,6 +433,7 @@ void display_pions_possibles_gen(int T[25], int joueur, int Cimetiere_IA, int Ci
 	
 	printf(" 12  10  8         5   3   1\n");
 	printf("   11  9   7     6   4   2\n");
+	printf("\n");
 }
 
 
@@ -523,6 +443,7 @@ void display_pions_possibles_cim(int T[25],int joueur, int Cimetiere_IA, int Cim
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
 	k=13;
+	printf("\n");
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	printf(" ____________________________\n");
@@ -610,6 +531,7 @@ void display_pions_possibles_cim(int T[25],int joueur, int Cimetiere_IA, int Cim
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\\\n");
 	printf(" 12  10   8         5   3   1\n");
 	printf("   11  9    7     6   4   2\n");
+	printf("\n");
 }
 
 void display_pions_possibles(int T[25], int joueur, int Cimetiere_IA, int Cimetiere_U, int Sortie_IA, int Sortie_U)
@@ -750,7 +672,7 @@ void possibles_coups_mil_J2(int T[25], int c, int k, int pos, int de1, int de2)
 	{
 		if (c < 5)
 			pion_mil(c);
-		if (c == 5)
+		else if (c == 5)
 		{	
 			couleur("32");
 			printf("O ");
@@ -803,6 +725,7 @@ void display_coups_possibles_gen(int T[25], int joueur,int position, int de1, in
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
 	k=13;
+	printf("\n");
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	//Affichage première ligne du plateau
@@ -1006,11 +929,11 @@ void display_coups_possibles_gen(int T[25], int joueur,int position, int de1, in
 	else printf("\nAucun utilisateur n'a ete selectione\n\n");
 
 	printf(" TTTTTTTTTTTTTTTTTTTTTTTTTTTT\\\n");
-	//printf(" T¯T¯T¯T¯T¯T¯T¯¯¯T¯T¯T¯T¯T¯T¯T\\\n");
 	//Fin Affichage dernière ligne du plateau
 	
 	printf(" 12  10  8         5   3   1\n");
 	printf("   11  9   7     6   4   2\n");
+	printf("\n");
 }
 
 void display_coups_possibles_cim(int T[25], int joueur,int position, int de1, int de2, int Cimetiere_IA, int Cimetiere_U, int Sortie_IA, int Sortie_U)
@@ -1018,6 +941,7 @@ void display_coups_possibles_cim(int T[25], int joueur,int position, int de1, in
 	int k,i; //k: case du pion|i: hauteur du pion dans sa case
 	
 	k=13;
+	printf("\n");
 	printf("   14  16  18    19  21  23\n");
 	printf(" 13  15  17        20  22  24\n");
 	//Affichage première ligne du plateau
@@ -1174,6 +1098,7 @@ void display_coups_possibles_cim(int T[25], int joueur,int position, int de1, in
 	
 	printf(" 12  10  8         5   3   1\n");
 	printf("   11  9   7     6   4   2\n");
+	printf("\n");
 }
 
 
@@ -1198,7 +1123,7 @@ void afficher(int T[25])
 {
 	int i;
 	
-	for (i=0;i<13;i++)
+	for (i=1;i<13;i++)
 		printf("%d: %d    %d: %d\n",i,T[i],i+13,T[i+13]);
 	printf("\n");
 }

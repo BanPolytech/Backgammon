@@ -36,7 +36,7 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 	de1 = lancer_de();
 	de2 = lancer_de();
 
-	printf("Lancé des dés\nd1:%d, d2:%d\n",de1,de2);
+	printf("\n\n\nLancé des dés\nDé1:%d,  Dé2:%d\n\n",de1,de2);
 	if(de1==de2)
 		d_double = 1;
 
@@ -105,7 +105,7 @@ void tour_joueur(int T[], int J, int *Cim_IA, int *Cim_U, int *S_IA, int *S_U) {
 		display(T, *Cim_IA, *Cim_U, *S_IA, *S_U);
 
 		//	DES RESTANT
-		printf("\nDés disponible :\nd1: %d, d2: %d\n\n", de1, de2);
+		printf("\nDés disponibles :\nDé1:  %d,        Dé2:  %d\n\n", de1, de2);
 
 		//	DESALLOCATION MEMOIRE
 		free(poss);
