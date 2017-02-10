@@ -3,7 +3,7 @@
 
 #define PROF_MAX 4
 #define MIN 0
-#define MAX 121 //120=8*15 cela correspond a tous les pions dans le jan de fin
+#define MAX 120 //120=8*15 cela correspond a tous les pions dans le jan de fin
 
 
 

@@ -11,7 +11,6 @@
 #ifndef COULEURS
 #define COULEURS
 
-#define clrscr() printf("\033[H\033[2J")
 #define couleur(param) printf("\033[%sm",param)
 
 
@@ -140,7 +139,7 @@ void possibles_pion_mil_J1(int c)
 	}
 	else if (c == 5)
 		printf("O ");
-	else if (c <= 10) //pion possible J1 >= 10
+	else if (c <= -10) //pion possible J1 >= 10
 	{
 		couleur("31");
 		printf("1%c",abs(c)%10+48);
@@ -151,7 +150,7 @@ void possibles_pion_mil_J1(int c)
 	else if(c < -5 )   //pion possible J1 entre 5 et 10 
 	{
 		couleur("31");
-		printf("X ");
+		printf("1%c",abs(c)%10+48);
 		couleur("0");
 	}
 	else
@@ -218,7 +217,7 @@ void possibles_pion_mil_J2(int c)
 		printf("O ");
 		couleur("0");
 	}
-	else if (c <= 10)
+	else if (c <= -10)
 		printf("1%c",abs(c)%10+48);
 	else if (c >= 10)  //pion possible J2 >= 10
 	{
@@ -231,7 +230,7 @@ void possibles_pion_mil_J2(int c)
 	else    //pion possible J2 entre 5 et 10
 	{
 		couleur("32");
-		printf("O ");
+		printf("%c ",abs(c)%10+48);
 		couleur("0");
 	}		 
 }
@@ -557,7 +556,7 @@ void possibles_coups_J1(int T[25], int c, int k,int i, int pos, int de1, int de2
 		else 
 			printf("%c", pion(c, i));	
 	}
-	else if (c>1  ||   (k != pos+de1    &&    k != pos+de2 &&    ((T[pos+de1]>0 && T[pos+de2]>0)   ||   k != pos+de1+de2) ))	
+	else if (c>1  ||   (k != pos+de1    &&    k != pos+de2  &&    ((T[pos+de1]>0 && T[pos+de2]>0)   ||   k != pos+de1+de2) ))	
 		printf("%c", pion(c, i)); // on ne peut pas jouer, on affiche normalement
 	else
 	{
