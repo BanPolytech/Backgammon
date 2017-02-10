@@ -220,6 +220,7 @@ coup backtrack(int de1, int de2, int T[], int *Cim_IA, int *Cim_U, int *S_IA, in
 	coups = coups_possibles(T, IA, &taillecoup, step); //tous les coups avec toutes combinaisons de dés 
 
 	do {
+		tailleposs = taillecoup;
 		CoupsPoss = possib_deplacement_departIA(T, de1, de2, coups, &tailleposs);
 		if(tailleposs <= 0) {
 			free(CoupsPoss);
