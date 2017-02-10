@@ -263,8 +263,17 @@ void tour_IA(int T[], int *Cim_IA, int *Cim_U, int *S_IA, int *S_U)
 
 	printf("Dés qu'obtiens l'IA: de1: %d   de2: %d\n\n",de1,de2 );
 
-	coup_choisi=backtrack(de1, de2, T, Cim_IA, Cim_U, S_IA, S_U );
-	jouer(coup_choisi, T, Cim_IA, Cim_U, S_IA, S_U, &mange, &sort);
+	do{
+		coup_choisi=backtrack(de1, de2, T, Cim_IA, Cim_U, S_IA, S_U );
+		jouer(coup_choisi, T, Cim_IA, Cim_U, S_IA, S_U, &mange, &sort);
+
+		if(coup_choisi.deplacement == de1) {
+			de1 = 0;
+		} else if (coup_choisi.deplacement == de2) {
+			de2 = 0;
+		}
+	}while(de1 != 0 || de2 != 0);
+
 	display(T, *Cim_IA, *Cim_U, *S_IA, *S_U);
 
 	printf("\nFIN DU TOUR DE L'IA\n\n");
